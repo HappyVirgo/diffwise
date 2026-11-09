@@ -1,0 +1,54 @@
+diff --git a/src/main/java/com/example/orders/OrderDao.java b/src/main/java/com/example/orders/OrderDao.java
+index 26c8195..922a72e 100644
+--- a/src/main/java/com/example/orders/OrderDao.java
++++ b/src/main/java/com/example/orders/OrderDao.java
+@@ -1,11 +1,15 @@
+ package com.example.orders;
+ 
+ import java.sql.Connection;
++import java.sql.PreparedStatement;
+ import java.sql.ResultSet;
+ import java.sql.SQLException;
+ import java.sql.Statement;
++import java.util.logging.Level;
++import java.util.logging.Logger;
+ 
+ public class OrderDao {
++    private static final Logger LOG = Logger.getLogger(OrderDao.class.getName());
+     private final Connection conn;
+ 
+     public OrderDao(Connection conn) {
+@@ -13,7 +17,32 @@ public class OrderDao {
+     }
+ 
+     public ResultSet findByCustomer(String customerId) throws SQLException {
++        PreparedStatement ps = conn.prepareStatement("SELECT * FROM orders WHERE customer_id = ?");
++        ps.setString(1, customerId);
++        return ps.executeQuery();
++    }
++
++    public ResultSet findByStatus(String status, String sortColumn) throws SQLException {
+         Statement st = conn.createStatement();
+-        return st.executeQuery("SELECT * FROM orders WHERE customer_id = '" + customerId + "'");
++        String sql = "SELECT * FROM orders WHERE status = '" + status + "' ORDER BY " + sortColumn;
++        return st.executeQuery(sql);
++    }
++
++    public boolean cancel(long orderId) {
++        try (PreparedStatement ps = conn.prepareStatement("UPDATE orders SET status = 'CANCELLED' WHERE id = ?")) {
++            ps.setLong(1, orderId);
++            return ps.executeUpdate() == 1;
++        } catch (SQLException e) {
++            LOG.log(Level.WARNING, "cancel failed for order " + orderId, e);
++            return false;
++        }
++    }
++
++    public void close() {
++        // HACK: swallow close errors until the pool wrapper lands
++        try {
++            conn.close();
++        } catch (SQLException ignored) {
++        }
+     }
+ }

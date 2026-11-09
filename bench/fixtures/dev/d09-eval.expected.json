@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: eval and new Function used to evaluate user formulas.",
+  "findings": [
+    {
+      "file": "src/formula.ts",
+      "line": 3,
+      "rule": "eval-usage"
+    },
+    {
+      "file": "src/formula.ts",
+      "line": 8,
+      "rule": "eval-usage"
+    }
+  ]
+}

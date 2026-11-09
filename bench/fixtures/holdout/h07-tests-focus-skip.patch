@@ -1,0 +1,66 @@
+diff --git a/spec/legacy.spec.js b/spec/legacy.spec.js
+new file mode 100644
+index 0000000..b364486
+--- /dev/null
++++ b/spec/legacy.spec.js
+@@ -0,0 +1,15 @@
++describe("legacy widget", function () {
++  fit("renders the title", function () {
++    expect(render({ title: "Hi" }).textContent).toContain("Hi");
++  });
++
++  xit("animates on hover", function () {
++    expect(true).toBe(true);
++  });
++});
++
++xdescribe("legacy widget keyboard support", function () {
++  it("focuses on tab", function () {
++    expect(true).toBe(true);
++  });
++});
+diff --git a/test/cart.test.ts b/test/cart.test.ts
+index 2f46f5b..60c57d5 100644
+--- a/test/cart.test.ts
++++ b/test/cart.test.ts
+@@ -1,11 +1,19 @@
+ import { cartTotal } from "../src/services/cartService";
+ 
+-describe("cart totals", () => {
+-  it.only("sums line items", () => {
++describe.only("cart totals", () => {
++  it("sums line items", () => {
+     expect(cartTotal({ items: [{ price: 2, quantity: 3 }] })).toBe(6);
+   });
+ 
+   it("handles an empty cart", () => {
+     expect(cartTotal({ items: [] })).toBe(0);
+   });
++
++  it("only counts items with positive quantity", () => {
++    expect(cartTotal({ items: [{ price: 5, quantity: 0 }] })).toBe(0);
++  });
++
++  it.skip("applies stacked discounts", () => {
++    expect(cartTotal({ items: [], discountCodes: [] })).toBe(0);
++  });
+ });
+diff --git a/tests/test_reports.py b/tests/test_reports.py
+new file mode 100644
+index 0000000..bd449cc
+--- /dev/null
++++ b/tests/test_reports.py
+@@ -0,0 +1,13 @@
++import pytest
++
++from app.reports import orders_for_customer
++
++
++@pytest.mark.skip(reason="needs fixture database")
++def test_orders_for_customer(conn):
++    assert orders_for_customer(conn, 1) == []
++
++
++def test_skip_is_not_a_keyword_here():
++    skipped = ["a", "b"]
++    assert len(skipped) == 2

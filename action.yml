@@ -1,0 +1,30 @@
+name: diffwise review
+description: Review pull request diffs with Claude or offline heuristics and post inline review comments.
+author: Bryant Le
+branding:
+  icon: eye
+  color: blue
+inputs:
+  github-token:
+    description: Token used to read the PR diff and post the review (needs pull-requests write).
+    required: false
+    default: ${{ github.token }}
+  anthropic-api-key:
+    description: Optional Anthropic API key. When empty, the offline heuristic reviewer is used.
+    required: false
+    default: ""
+  provider:
+    description: auto | claude | heuristic
+    required: false
+    default: auto
+  fail-on:
+    description: Fail the step if any finding is at least this severity (critical | major | minor | info | none).
+    required: false
+    default: none
+  ignore:
+    description: Extra ignore globs (comma or newline separated), added to the defaults (lockfiles, minified, vendored).
+    required: false
+    default: ""
+runs:
+  using: node24
+  main: dist/index.js

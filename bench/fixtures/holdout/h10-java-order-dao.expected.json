@@ -1,0 +1,5 @@
+{"description": "Synthetic modified Java DAO: removed concatenated query replaced by a PreparedStatement, but a new concatenated SQL string, a HACK comment and an empty catch are added; string concat in a log message is not SQL.", "findings": [
+  {"file": "src/main/java/com/example/orders/OrderDao.java", "line": 27, "rule": "sql-concat"},
+  {"file": "src/main/java/com/example/orders/OrderDao.java", "line": 42, "rule": "todo-comment"},
+  {"file": "src/main/java/com/example/orders/OrderDao.java", "line": 45, "rule": "empty-catch"}
+]}

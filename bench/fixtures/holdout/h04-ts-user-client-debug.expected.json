@@ -1,0 +1,6 @@
+{"description": "Synthetic modified TypeScript API client: leftover console.log, FIXME comment, empty catch and debugger; TODO inside a string literal and console.error in a real error handler are not flagged.", "findings": [
+  {"file": "src/api/userClient.ts", "line": 13, "rule": "debug-output"},
+  {"file": "src/api/userClient.ts", "line": 28, "rule": "todo-comment"},
+  {"file": "src/api/userClient.ts", "line": 32, "rule": "empty-catch"},
+  {"file": "src/api/userClient.ts", "line": 35, "rule": "debugger-statement"}
+]}

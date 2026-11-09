@@ -1,0 +1,8 @@
+diff --git a/src/config/storage.ts b/src/config/storage.ts
+index c350f3f..e3c95d5 100644
+--- a/src/config/storage.ts
++++ b/src/config/storage.ts
+@@ -1 +1,3 @@
+ export const bucket = "uploads";
++export const accessKeyId = "{{FAKE:AWS_1}}";
++export const region = "us-east-1";

@@ -1,0 +1,25 @@
+diff --git a/app/jobs/cleanup.py b/app/jobs/cleanup.py
+index 14a0839..16eacf7 100644
+--- a/app/jobs/cleanup.py
++++ b/app/jobs/cleanup.py
+@@ -1,5 +1,19 @@
++import logging
+ import shutil
+ 
++log = logging.getLogger(__name__)
++
+ 
+ def cleanup(path):
+-    shutil.rmtree(path)
++    try:
++        shutil.rmtree(path)
++    except OSError:
++        pass
++
++
++def cleanup_all(paths):
++    for p in paths:
++        try:
++            shutil.rmtree(p)
++        except OSError as exc:
++            log.warning("failed %s: %s", p, exc)

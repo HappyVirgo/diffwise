@@ -1,0 +1,4 @@
+{
+  "description": "Synthetic clean diff: rename a helper and add a guard clause.",
+  "findings": []
+}

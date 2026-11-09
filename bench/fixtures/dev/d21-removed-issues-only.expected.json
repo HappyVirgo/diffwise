@@ -1,0 +1,4 @@
+{
+  "description": "Synthetic clean diff: debug output, TODO and .only are removed, not added.",
+  "findings": []
+}

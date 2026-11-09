@@ -1,0 +1,27 @@
+diff --git a/src/cache/redis.ts b/src/cache/redis.ts
+index bf5a4ec..733f155 100644
+--- a/src/cache/redis.ts
++++ b/src/cache/redis.ts
+@@ -1,3 +1,21 @@
+ export async function get(key: string, client: Client): Promise<string | null> {
+-  return client.get(key);
++  try {
++    return await client.get(key);
++  } catch {}
++  return null;
++}
++
++export async function del(key: string, client: Client): Promise<void> {
++  try {
++    await client.del(key);
++  } catch (err) {
++  }
++}
++
++export async function set(key: string, value: string, client: Client): Promise<void> {
++  try {
++    await client.set(key, value);
++  } catch (err) {
++    logger.warn("cache set failed", err);
++  }
+ }

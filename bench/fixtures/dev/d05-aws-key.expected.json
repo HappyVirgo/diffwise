@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: fake AWS access key id hard-coded in config.",
+  "findings": [
+    {
+      "file": "src/config/storage.ts",
+      "line": 2,
+      "rule": "aws-access-key"
+    }
+  ]
+}

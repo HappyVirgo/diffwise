@@ -1,0 +1,10 @@
+diff --git a/deploy/keys/service.pem b/deploy/keys/service.pem
+new file mode 100644
+index 0000000..24e61b3
+--- /dev/null
++++ b/deploy/keys/service.pem
+@@ -0,0 +1,4 @@
++{{FAKE:PEM_BEGIN_RSA}}
++MIIEowIBAAKCAQEAfakefakefakefakefakefakefakefakefakefakefake0001
++ZmFrZWtleWRhdGFmb3J0ZXN0aW5nb25seW5vdGFyZWFsa2V5YXRhbGwwMDAwMDAw
++{{FAKE:PEM_END_RSA}}

@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: bare except with pass, plus an except that logs (fine).",
+  "findings": [
+    {
+      "file": "app/jobs/cleanup.py",
+      "line": 10,
+      "rule": "empty-catch"
+    }
+  ]
+}

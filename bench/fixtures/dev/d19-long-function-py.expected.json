@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: a newly added 55-line Python function.",
+  "findings": [
+    {
+      "file": "app/analytics/rollup.py",
+      "line": 1,
+      "rule": "long-function"
+    }
+  ]
+}

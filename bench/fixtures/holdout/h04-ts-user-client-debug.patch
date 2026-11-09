@@ -1,0 +1,40 @@
+diff --git a/src/api/userClient.ts b/src/api/userClient.ts
+index 608a0bd..9f9ce62 100644
+--- a/src/api/userClient.ts
++++ b/src/api/userClient.ts
+@@ -3,9 +3,34 @@ import { http } from "./http";
+ export interface User {
+   id: string;
+   name: string;
++  status: string;
+ }
+ 
++const PLACEHOLDER_STATUS = "TODO: set by onboarding";
++
+ export async function getUser(id: string): Promise<User> {
+   const res = await http.get(`/users/${id}`);
+-  return res.data as User;
++  console.log("getUser response", res.data);
++  return { status: PLACEHOLDER_STATUS, ...res.data } as User;
++}
++
++export async function deleteUser(id: string): Promise<boolean> {
++  try {
++    await http.delete(`/users/${id}`);
++    return true;
++  } catch (err) {
++    console.error("deleteUser failed", err);
++    return false;
++  }
++}
++
++export async function prefetchUsers(ids: string[]): Promise<void> {
++  // FIXME: this fires requests serially; batch them
++  for (const id of ids) {
++    try {
++      await getUser(id);
++    } catch {
++    }
++  }
++  debugger;
+ }

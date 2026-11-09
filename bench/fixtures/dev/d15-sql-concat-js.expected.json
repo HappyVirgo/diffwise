@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: SQL built with + and template literals; a parameterized query is fine.",
+  "findings": [
+    {
+      "file": "src/repo/users.ts",
+      "line": 6,
+      "rule": "sql-concat"
+    },
+    {
+      "file": "src/repo/users.ts",
+      "line": 10,
+      "rule": "sql-concat"
+    }
+  ]
+}

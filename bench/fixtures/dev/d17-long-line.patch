@@ -1,0 +1,16 @@
+diff --git a/docs/labels.md b/docs/labels.md
+new file mode 100644
+index 0000000..d261f99
+--- /dev/null
++++ b/docs/labels.md
+@@ -0,0 +1,3 @@
++# Labels
++
++The dashboard shows overview, revenue, churn, retention and NPS tiles; each tile has a short help text that explains what the number means and which period it refers to, configured in labels.ts.
+diff --git a/src/ui/labels.ts b/src/ui/labels.ts
+index 0237855..5d7dfa4 100644
+--- a/src/ui/labels.ts
++++ b/src/ui/labels.ts
+@@ -1 +1,2 @@
+ export const title = "Dashboard";
++export const help = { overview: "Shows totals", revenue: "Gross revenue for the selected period", churn: "Customers lost in the period", retention: "Share of customers kept", nps: "Net promoter score" };

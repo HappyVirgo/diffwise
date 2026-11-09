@@ -1,0 +1,3 @@
+{"description": "Synthetic TypeScript report builder with one newly added 61-line-body function; short helpers and a long line in a Markdown doc (not source code) are not flagged.", "findings": [
+  {"file": "src/report/buildSummary.ts", "line": 7, "rule": "long-function"}
+]}

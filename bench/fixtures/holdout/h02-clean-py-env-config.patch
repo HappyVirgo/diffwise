@@ -1,0 +1,52 @@
+diff --git a/app/config.py b/app/config.py
+index 8a9f397..46d452d 100644
+--- a/app/config.py
++++ b/app/config.py
+@@ -1 +1,23 @@
+-DATABASE_URL = "sqlite:///local.db"
++import os
++from dataclasses import dataclass
++
++# Copy these into your .env file; never commit real values.
++EXAMPLE_ENV = {
++    "PAYMENTS_API_KEY": "<your-key-here>",
++    "SMTP_PASSWORD": "",
++}
++
++
++@dataclass(frozen=True)
++class Settings:
++    database_url: str
++    api_key: str
++    smtp_password: str
++
++
++def load_settings() -> Settings:
++    return Settings(
++        database_url=os.environ.get("DATABASE_URL", "sqlite:///local.db"),
++        api_key=os.environ["PAYMENTS_API_KEY"],
++        smtp_password=os.getenv("SMTP_PASSWORD", ""),
++    )
+diff --git a/app/repo.py b/app/repo.py
+index 5529a89..3b81cdb 100644
+--- a/app/repo.py
++++ b/app/repo.py
+@@ -1,2 +1,17 @@
++import logging
++
++log = logging.getLogger(__name__)
++
++
+ def find_user(conn, email):
+-    return None
++    cur = conn.execute("SELECT id, email FROM users WHERE email = ?", (email,))
++    return cur.fetchone()
++
++
++def find_orders(conn, user_id, status):
++    sql = "SELECT id, total FROM orders WHERE user_id = %s AND status = %s"
++    cur = conn.cursor()
++    cur.execute(sql, (user_id, status))
++    rows = cur.fetchall()
++    log.info("found %d orders for user %s", len(rows), user_id)
++    return rows

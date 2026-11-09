@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: f-string and % formatted SQL in Python; parameterized execute is fine.",
+  "findings": [
+    {
+      "file": "app/reports/queries.py",
+      "line": 7,
+      "rule": "sql-concat"
+    },
+    {
+      "file": "app/reports/queries.py",
+      "line": 12,
+      "rule": "sql-concat"
+    }
+  ]
+}

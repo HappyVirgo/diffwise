@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: Python print and breakpoint left in a module.",
+  "findings": [
+    {
+      "file": "app/billing/tax.py",
+      "line": 7,
+      "rule": "debug-output"
+    },
+    {
+      "file": "app/billing/tax.py",
+      "line": 8,
+      "rule": "debugger-statement"
+    }
+  ]
+}

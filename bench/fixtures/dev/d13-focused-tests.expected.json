@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: it.only and describe.only committed in a spec file.",
+  "findings": [
+    {
+      "file": "test/cart.test.ts",
+      "line": 3,
+      "rule": "focused-test"
+    },
+    {
+      "file": "test/cart.test.ts",
+      "line": 7,
+      "rule": "focused-test"
+    }
+  ]
+}

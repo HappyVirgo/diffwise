@@ -1,0 +1,24 @@
+diff --git a/package-lock.json b/package-lock.json
+index 9832141..41972d7 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1,4 +1,5 @@
+ {
+   "name": "app",
++  "version": "1.0.1",
+   "lockfileVersion": 3
+ }
+diff --git a/public/vendor.min.js b/public/vendor.min.js
+new file mode 100644
+index 0000000..b85c6c8
+--- /dev/null
++++ b/public/vendor.min.js
+@@ -0,0 +1 @@
++!function(){console.log("x");var a=1;eval("a")}();
+diff --git a/vendor/lib/util.js b/vendor/lib/util.js
+new file mode 100644
+index 0000000..01d008a
+--- /dev/null
++++ b/vendor/lib/util.js
+@@ -0,0 +1 @@
++export const debug = () => console.log("vendored");

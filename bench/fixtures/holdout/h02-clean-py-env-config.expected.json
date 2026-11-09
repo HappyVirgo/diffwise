@@ -1,0 +1,1 @@
+{"description": "Synthetic Python config/repo change: secrets read from os.environ/os.getenv, placeholder and empty example values, parameterized SQL with ? and %s params, logger-style %d formatting; clean.", "findings": []}

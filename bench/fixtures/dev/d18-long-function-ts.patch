@@ -1,0 +1,72 @@
+diff --git a/src/pricing/score.ts b/src/pricing/score.ts
+new file mode 100644
+index 0000000..0998b7f
+--- /dev/null
++++ b/src/pricing/score.ts
+@@ -0,0 +1,66 @@
++export function clamp(n: number): number {
++  return Math.max(0, Math.min(1, n));
++}
++
++export function weightedScore(values: number[]): number {
++  let total = 0;
++  total += values[0] * 1;
++  total += values[1] * 2;
++  total += values[2] * 3;
++  total += values[3] * 4;
++  total += values[4] * 5;
++  total += values[5] * 6;
++  total += values[6] * 7;
++  total += values[7] * 8;
++  total += values[8] * 9;
++  total += values[9] * 10;
++  total += values[10] * 11;
++  total += values[11] * 12;
++  total += values[12] * 13;
++  total += values[13] * 14;
++  total += values[14] * 15;
++  total += values[15] * 16;
++  total += values[16] * 17;
++  total += values[17] * 18;
++  total += values[18] * 19;
++  total += values[19] * 20;
++  total += values[20] * 21;
++  total += values[21] * 22;
++  total += values[22] * 23;
++  total += values[23] * 24;
++  total += values[24] * 25;
++  total += values[25] * 26;
++  total += values[26] * 27;
++  total += values[27] * 28;
++  total += values[28] * 29;
++  total += values[29] * 30;
++  total += values[30] * 31;
++  total += values[31] * 32;
++  total += values[32] * 33;
++  total += values[33] * 34;
++  total += values[34] * 35;
++  total += values[35] * 36;
++  total += values[36] * 37;
++  total += values[37] * 38;
++  total += values[38] * 39;
++  total += values[39] * 40;
++  total += values[40] * 41;
++  total += values[41] * 42;
++  total += values[42] * 43;
++  total += values[43] * 44;
++  total += values[44] * 45;
++  total += values[45] * 46;
++  total += values[46] * 47;
++  total += values[47] * 48;
++  total += values[48] * 49;
++  total += values[49] * 50;
++  total += values[50] * 51;
++  total += values[51] * 52;
++  total += values[52] * 53;
++  total += values[53] * 54;
++  total += values[54] * 55;
++  total += values[55] * 56;
++  total += values[56] * 57;
++  total += values[57] * 58;
++  return total;
++}

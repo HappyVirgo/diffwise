@@ -1,0 +1,20 @@
+{
+  "description": "Synthetic: skipped tests in JS and Python.",
+  "findings": [
+    {
+      "file": "test/api.spec.js",
+      "line": 5,
+      "rule": "skipped-test"
+    },
+    {
+      "file": "test/api.spec.js",
+      "line": 8,
+      "rule": "skipped-test"
+    },
+    {
+      "file": "tests/test_export.py",
+      "line": 8,
+      "rule": "skipped-test"
+    }
+  ]
+}

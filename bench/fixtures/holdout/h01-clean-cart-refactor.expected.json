@@ -1,0 +1,1 @@
+{"description": "Synthetic TypeScript refactor of a modified file plus a new helper file; console.log, debugger and TODO appear only in removed lines, so nothing is flagged.", "findings": []}

@@ -1,0 +1,52 @@
+diff --git a/app/__init__.py b/app/__init__.py
+index 493f741..6a9beea 100644
+--- a/app/__init__.py
++++ b/app/__init__.py
+@@ -1 +1 @@
+-__version__ = "0.3.0"
++__version__ = "0.4.0"
+diff --git a/app/reports.py b/app/reports.py
+new file mode 100644
+index 0000000..7f2b120
+--- /dev/null
++++ b/app/reports.py
+@@ -0,0 +1,39 @@
++import logging
++import sqlite3
++
++log = logging.getLogger(__name__)
++
++
++def revenue_by_region(conn: sqlite3.Connection, region: str):
++    query = f"SELECT SUM(total) FROM orders WHERE region = '{region}'"
++    print(query)
++    return conn.execute(query).fetchone()[0]
++
++
++def top_customers(conn, limit, since):
++    sql = "SELECT customer_id FROM orders WHERE created_at >= '%s' LIMIT %d" % (since, limit)
++    return conn.execute(sql).fetchall()
++
++
++def orders_for_customer(conn, customer_id):
++    return conn.execute(
++        "SELECT id, total FROM orders WHERE customer_id = ?", (customer_id,)
++    ).fetchall()
++
++
++def delete_region(conn, region):
++    conn.execute("DELETE FROM orders WHERE region = '{}'".format(region))
++
++
++def safe_count(conn):
++    try:
++        return conn.execute("SELECT COUNT(*) FROM orders").fetchone()[0]
++    except sqlite3.OperationalError:
++        pass
++    # XXX: callers expect None when the table is missing
++    return None
++
++
++def debug_dump(conn):
++    breakpoint()
++    log.info("dumped %d rows", conn.total_changes)

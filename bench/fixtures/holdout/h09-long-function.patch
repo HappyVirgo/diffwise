@@ -1,0 +1,87 @@
+diff --git a/docs/report-format.md b/docs/report-format.md
+index f9e225c..3b72482 100644
+--- a/docs/report-format.md
++++ b/docs/report-format.md
+@@ -1 +1,3 @@
+ # Report format
++
++The summary is rendered as Markdown with a title, a totals section, one section per region, and a footer that lists warnings; regions with no orders are omitted entirely from the output.
+diff --git a/src/report/buildSummary.ts b/src/report/buildSummary.ts
+new file mode 100644
+index 0000000..2827d87
+--- /dev/null
++++ b/src/report/buildSummary.ts
+@@ -0,0 +1,73 @@
++import { Report, Region } from "./types";
++
++function formatMoney(cents: number): string {
++  return `$${(cents / 100).toFixed(2)}`;
++}
++
++export function buildSummary(report: Report): string {
++  const lines: string[] = [];
++  lines.push(`# ${report.title}`);
++  lines.push("");
++  lines.push(`Generated: ${report.generatedAt.toISOString()}`);
++  lines.push(`Period: ${report.periodStart} to ${report.periodEnd}`);
++  lines.push("");
++  lines.push("## Totals");
++  lines.push("");
++  lines.push(`- Orders: ${report.totals.orders}`);
++  lines.push(`- Revenue: ${formatMoney(report.totals.revenueCents)}`);
++  lines.push(`- Refunds: ${formatMoney(report.totals.refundCents)}`);
++  lines.push(`- Net: ${formatMoney(report.totals.revenueCents - report.totals.refundCents)}`);
++  lines.push(`- Customers: ${report.totals.customers}`);
++  lines.push(`- New customers: ${report.totals.newCustomers}`);
++  lines.push(`- Returning customers: ${report.totals.customers - report.totals.newCustomers}`);
++  lines.push(`- Items sold: ${report.totals.items}`);
++  lines.push(`- Average items per order: ${(report.totals.items / Math.max(1, report.totals.orders)).toFixed(2)}`);
++  lines.push(`- Shipping collected: ${formatMoney(report.totals.shippingCents)}`);
++  lines.push(`- Tax collected: ${formatMoney(report.totals.taxCents)}`);
++  lines.push(`- Discounts given: ${formatMoney(report.totals.discountCents)}`);
++  lines.push(`- Gift cards redeemed: ${formatMoney(report.totals.giftCardCents)}`);
++  lines.push(`- Chargebacks: ${report.totals.chargebacks}`);
++  lines.push("");
++
++  const regions = [...report.regions].sort((a, b) => b.revenueCents - a.revenueCents);
++  for (const region of regions) {
++    if (region.orders === 0) {
++      continue;
++    }
++    lines.push(`## ${region.name}`);
++    lines.push("");
++    lines.push(`- Orders: ${region.orders}`);
++    lines.push(`- Revenue: ${formatMoney(region.revenueCents)}`);
++    const share = report.totals.revenueCents
++      ? (region.revenueCents / report.totals.revenueCents) * 100
++      : 0;
++    lines.push(`- Share of revenue: ${share.toFixed(1)}%`);
++    if (region.topProduct) {
++      lines.push(`- Top product: ${region.topProduct.name}`);
++      lines.push(`- Top product units: ${region.topProduct.units}`);
++    }
++    const avg = region.orders ? region.revenueCents / region.orders : 0;
++    lines.push(`- Average order: ${formatMoney(avg)}`);
++    lines.push("");
++  }
++
++  if (report.warnings.length > 0) {
++    lines.push("## Warnings");
++    lines.push("");
++    for (const warning of report.warnings) {
++      lines.push(`- ${warning}`);
++    }
++    lines.push("");
++  }
++
++  lines.push("---");
++  lines.push(`Regions reported: ${regions.filter((r) => r.orders > 0).length}`);
++  lines.push(`Regions skipped: ${regions.filter((r) => r.orders === 0).length}`);
++  lines.push(`Source: ${report.source}`);
++  lines.push("");
++  return lines.join("\n");
++}
++
++export function regionNames(regions: Region[]): string[] {
++  return regions.filter((r) => r.orders > 0).map((r) => r.name);
++}

@@ -1,0 +1,15 @@
+diff --git a/src/formula.ts b/src/formula.ts
+index 438d57a..cf3d28d 100644
+--- a/src/formula.ts
++++ b/src/formula.ts
+@@ -1,3 +1,9 @@
+ export function evaluate(expr: string): number {
+-  return Number(expr);
++  // never use eval() here in production
++  const value = eval(expr);
++  return Number(value);
++}
++
++export function compile(body: string): () => number {
++  return new Function("return " + body) as () => number;
+ }

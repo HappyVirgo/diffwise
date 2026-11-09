@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: fake PEM private key committed to a fixtures folder.",
+  "findings": [
+    {
+      "file": "deploy/keys/service.pem",
+      "line": 1,
+      "rule": "private-key"
+    }
+  ]
+}

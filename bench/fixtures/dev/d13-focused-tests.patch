@@ -1,0 +1,16 @@
+diff --git a/test/cart.test.ts b/test/cart.test.ts
+index a3c41f6..991a7c0 100644
+--- a/test/cart.test.ts
++++ b/test/cart.test.ts
+@@ -1,7 +1,10 @@
+ import { describe, it, expect } from "vitest";
+ 
+-describe("cart", () => {
++describe.only("cart", () => {
+   it("adds", () => {
+     expect(1 + 1).toBe(2);
+   });
++  it.only("removes", () => {
++    expect(2 - 1).toBe(1);
++  });
+ });

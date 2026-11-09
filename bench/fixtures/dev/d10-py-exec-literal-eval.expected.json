@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: exec on config text; ast.literal_eval is safe and not flagged.",
+  "findings": [
+    {
+      "file": "tools/loader/settings.py",
+      "line": 9,
+      "rule": "eval-usage"
+    }
+  ]
+}

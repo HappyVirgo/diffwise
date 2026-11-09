@@ -1,0 +1,4 @@
+{
+  "description": "Synthetic: noise only - lockfile and minified bundle with console.log; all skipped.",
+  "findings": []
+}

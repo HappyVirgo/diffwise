@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: a renamed module with one added debug line.",
+  "findings": [
+    {
+      "file": "src/lib/date-format.ts",
+      "line": 6,
+      "rule": "debug-output"
+    }
+  ]
+}

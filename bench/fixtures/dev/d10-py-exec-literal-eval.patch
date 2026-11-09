@@ -1,0 +1,13 @@
+diff --git a/tools/loader/settings.py b/tools/loader/settings.py
+index 00d72be..e988ae9 100644
+--- a/tools/loader/settings.py
++++ b/tools/loader/settings.py
+@@ -3,3 +3,8 @@ import ast
+ 
+ def load(text):
+     return ast.literal_eval(text)
++
++
++def load_script(text, scope):
++    exec(text, scope)
++    return scope

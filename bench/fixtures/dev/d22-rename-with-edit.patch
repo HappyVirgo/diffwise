@@ -1,0 +1,15 @@
+diff --git a/src/lib/dates.ts b/src/lib/date-format.ts
+similarity index 92%
+rename from src/lib/dates.ts
+rename to src/lib/date-format.ts
+index 8b9af94..4b963de 100644
+--- a/src/lib/dates.ts
++++ b/src/lib/date-format.ts
+@@ -3,6 +3,7 @@ export function iso(d: Date): string {
+ }
+ 
+ export function day(d: Date): string {
++  console.log(d);
+   return d.toISOString().slice(0, 10);
+ }
+ 

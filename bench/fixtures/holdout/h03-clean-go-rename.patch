@@ -1,0 +1,36 @@
+diff --git a/internal/util/slug.go b/internal/textutil/slug.go
+similarity index 59%
+rename from internal/util/slug.go
+rename to internal/textutil/slug.go
+index 6924cbc..53d25a9 100644
+--- a/internal/util/slug.go
++++ b/internal/textutil/slug.go
+@@ -1,17 +1,25 @@
+-package util
++package textutil
+ 
+ import (
++	"errors"
+ 	"regexp"
+ 	"strings"
+ )
+ 
+ var nonAlnum = regexp.MustCompile(`[^a-z0-9]+`)
+ 
++// ErrEmptySlug is returned when the input has no usable characters.
++var ErrEmptySlug = errors.New("textutil: empty slug")
++
+ // Slugify lowercases s and replaces runs of non-alphanumerics with a dash.
+-func Slugify(s string) string {
++func Slugify(s string) (string, error) {
+ 	s = strings.ToLower(strings.TrimSpace(s))
+ 	s = nonAlnum.ReplaceAllString(s, "-")
+-	return strings.Trim(s, "-")
++	s = strings.Trim(s, "-")
++	if s == "" {
++		return "", ErrEmptySlug
++	}
++	return s, nil
+ }
+ 
+ // Truncate shortens s to at most n runes.

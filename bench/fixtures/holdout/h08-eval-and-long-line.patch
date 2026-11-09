@@ -1,0 +1,44 @@
+diff --git a/src/plugins/loader.js b/src/plugins/loader.js
+index d5630c3..4542c47 100644
+--- a/src/plugins/loader.js
++++ b/src/plugins/loader.js
+@@ -1,3 +1,15 @@
++// Plugin configs are plain JSON; we deliberately avoid eval() for them.
+ export function parseConfig(text) {
+   return JSON.parse(text);
+ }
++
++export function loadPlugin(source) {
++  const factory = new Function("api", source);
++  return factory;
++}
++
++export function evaluateExpression(expr) {
++  return eval(expr);
++}
++
++export const PLUGIN_LOAD_ERROR = "Plugin failed to load: the plugin source must export a default function that accepts the host api object and returns a plugin descriptor.";
+diff --git a/tools/run_script.py b/tools/run_script.py
+new file mode 100644
+index 0000000..f895b05
+--- /dev/null
++++ b/tools/run_script.py
+@@ -0,0 +1,18 @@
++import ast
++import sys
++
++
++def read_settings(raw: str) -> dict:
++    return ast.literal_eval(raw)
++
++
++def run_script(path: str) -> dict:
++    namespace: dict = {"__name__": "__script__"}
++    with open(path, encoding="utf-8") as fh:
++        code = fh.read()
++    exec(compile(code, path, "exec"), namespace)
++    return namespace
++
++
++if __name__ == "__main__":
++    run_script(sys.argv[1])

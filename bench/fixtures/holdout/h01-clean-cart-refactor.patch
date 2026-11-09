@@ -1,0 +1,46 @@
+diff --git a/src/services/cartService.ts b/src/services/cartService.ts
+index 62f0755..56b285d 100644
+--- a/src/services/cartService.ts
++++ b/src/services/cartService.ts
+@@ -1,14 +1,13 @@
+ import { Cart, LineItem } from "../types";
++import { applyDiscounts } from "./discounts";
++
++function lineTotal(item: LineItem): number {
++  return item.price * item.quantity;
++}
+ 
+ export function cartTotal(cart: Cart): number {
+-  // TODO: handle discounts
+-  let total = 0;
+-  for (const item of cart.items) {
+-    console.log("item", item);
+-    total += item.price * item.quantity;
+-  }
+-  debugger;
+-  return total;
++  const subtotal = cart.items.reduce((sum, item) => sum + lineTotal(item), 0);
++  return applyDiscounts(subtotal, cart.discountCodes ?? []);
+ }
+ 
+ export function itemCount(cart: Cart): number {
+diff --git a/src/services/discounts.ts b/src/services/discounts.ts
+new file mode 100644
+index 0000000..2525ccf
+--- /dev/null
++++ b/src/services/discounts.ts
+@@ -0,0 +1,14 @@
++export type DiscountCode = { kind: "percent" | "fixed"; amount: number };
++
++// Codes are applied in order; percentage codes stack multiplicatively.
++export function applyDiscounts(subtotal: number, codes: DiscountCode[]): number {
++  let total = subtotal;
++  for (const code of codes) {
++    if (code.kind === "percent") {
++      total = total * (1 - code.amount / 100);
++    } else {
++      total = total - code.amount;
++    }
++  }
++  return Math.max(0, Math.round(total * 100) / 100);
++}

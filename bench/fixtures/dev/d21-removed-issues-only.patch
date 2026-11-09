@@ -1,0 +1,11 @@
+diff --git a/src/orders/sync.ts b/src/orders/sync.ts
+index 2511780..b3584fb 100644
+--- a/src/orders/sync.ts
++++ b/src/orders/sync.ts
+@@ -1,6 +1,3 @@
+ export async function sync(api: Api): Promise<void> {
+-  // TODO remove logging
+-  console.log("syncing");
+-  debugger;
+   await api.sync();
+ }

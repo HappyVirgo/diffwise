@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: empty catch blocks (inline and multi-line) next to a handled catch.",
+  "findings": [
+    {
+      "file": "src/cache/redis.ts",
+      "line": 4,
+      "rule": "empty-catch"
+    },
+    {
+      "file": "src/cache/redis.ts",
+      "line": 11,
+      "rule": "empty-catch"
+    }
+  ]
+}

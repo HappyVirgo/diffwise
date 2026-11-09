@@ -1,0 +1,8 @@
+{"description": "Synthetic test changes across TS, JS and Python: describe.only, fit, it.skip, xit, xdescribe and @pytest.mark.skip; a removed it.only and test names containing 'only'/'skip' are not flagged.", "findings": [
+  {"file": "test/cart.test.ts", "line": 3, "rule": "focused-test"},
+  {"file": "test/cart.test.ts", "line": 16, "rule": "skipped-test"},
+  {"file": "spec/legacy.spec.js", "line": 2, "rule": "focused-test"},
+  {"file": "spec/legacy.spec.js", "line": 6, "rule": "skipped-test"},
+  {"file": "spec/legacy.spec.js", "line": 11, "rule": "skipped-test"},
+  {"file": "tests/test_reports.py", "line": 6, "rule": "skipped-test"}
+]}

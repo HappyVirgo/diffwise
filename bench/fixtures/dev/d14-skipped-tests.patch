@@ -1,0 +1,28 @@
+diff --git a/test/api.spec.js b/test/api.spec.js
+index 178666b..ce3fdb9 100644
+--- a/test/api.spec.js
++++ b/test/api.spec.js
+@@ -2,4 +2,8 @@ describe("api", () => {
+   it("lists users", async () => {
+     expect(await list()).toHaveLength(3);
+   });
++  it.skip("paginates", async () => {
++    expect(await list({ page: 2 })).toHaveLength(0);
++  });
++  xit("filters", async () => {});
+ });
+diff --git a/tests/test_export.py b/tests/test_export.py
+index 18ec6eb..d736bae 100644
+--- a/tests/test_export.py
++++ b/tests/test_export.py
+@@ -1,2 +1,10 @@
++import pytest
++
++
+ def test_csv():
+     assert export("csv")
++
++
++@pytest.mark.skip(reason="flaky")
++def test_xlsx():
++    assert export("xlsx")

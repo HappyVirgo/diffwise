@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: TODO/FIXME comments added; a TODO inside a string is not a comment.",
+  "findings": [
+    {
+      "file": "src/queue/worker.js",
+      "line": 2,
+      "rule": "todo-comment"
+    },
+    {
+      "file": "src/queue/worker.js",
+      "line": 4,
+      "rule": "todo-comment"
+    }
+  ]
+}

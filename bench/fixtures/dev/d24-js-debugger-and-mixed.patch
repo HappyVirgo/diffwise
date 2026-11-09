@@ -1,0 +1,15 @@
+diff --git a/web/components/Upload.jsx b/web/components/Upload.jsx
+index 001cda0..83a75b2 100644
+--- a/web/components/Upload.jsx
++++ b/web/components/Upload.jsx
+@@ -1,3 +1,9 @@
+ export function Upload({ onDone }) {
+-  return <input type="file" onChange={(e) => onDone(e.target.files)} />;
++  const handle = (e) => {
++    debugger;
++    try {
++      onDone(e.target.files);
++    } catch (e) {}
++  };
++  return <input type="file" onChange={handle} />;
+ }

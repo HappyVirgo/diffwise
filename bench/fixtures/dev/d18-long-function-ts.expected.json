@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: a newly added 60-line function and a short helper.",
+  "findings": [
+    {
+      "file": "src/pricing/score.ts",
+      "line": 5,
+      "rule": "long-function"
+    }
+  ]
+}

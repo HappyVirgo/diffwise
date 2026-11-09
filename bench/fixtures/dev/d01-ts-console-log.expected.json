@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: console.log debug output added to a service; console.error kept.",
+  "findings": [
+    {
+      "file": "src/services/invoice.ts",
+      "line": 2,
+      "rule": "debug-output"
+    },
+    {
+      "file": "src/services/invoice.ts",
+      "line": 5,
+      "rule": "debug-output"
+    }
+  ]
+}

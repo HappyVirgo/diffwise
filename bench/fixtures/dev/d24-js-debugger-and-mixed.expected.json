@@ -1,0 +1,15 @@
+{
+  "description": "Synthetic: debugger statement plus an empty catch in a React-style component file.",
+  "findings": [
+    {
+      "file": "web/components/Upload.jsx",
+      "line": 3,
+      "rule": "debugger-statement"
+    },
+    {
+      "file": "web/components/Upload.jsx",
+      "line": 6,
+      "rule": "empty-catch"
+    }
+  ]
+}

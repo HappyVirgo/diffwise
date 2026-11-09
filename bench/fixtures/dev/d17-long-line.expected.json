@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: a 200+ character line of code; a long line in a markdown file is not flagged.",
+  "findings": [
+    {
+      "file": "src/ui/labels.ts",
+      "line": 2,
+      "rule": "long-line"
+    }
+  ]
+}

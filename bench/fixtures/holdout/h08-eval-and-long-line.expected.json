@@ -1,0 +1,6 @@
+{"description": "Synthetic plugin loader using new Function and eval, a 173-char source line, and a Python exec(); eval mentioned in a comment and ast.literal_eval are not flagged.", "findings": [
+  {"file": "src/plugins/loader.js", "line": 7, "rule": "eval-usage"},
+  {"file": "src/plugins/loader.js", "line": 12, "rule": "eval-usage"},
+  {"file": "src/plugins/loader.js", "line": 15, "rule": "long-line"},
+  {"file": "tools/run_script.py", "line": 13, "rule": "eval-usage"}
+]}

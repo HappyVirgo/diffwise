@@ -1,0 +1,9 @@
+{"description": "Synthetic Python reports module: SQL built via f-string, % and .format (flagged) next to a parameterized query (not flagged), plus print, except/pass, XXX comment and breakpoint(); logger %d formatting is not SQL.", "findings": [
+  {"file": "app/reports.py", "line": 8, "rule": "sql-concat"},
+  {"file": "app/reports.py", "line": 9, "rule": "debug-output"},
+  {"file": "app/reports.py", "line": 14, "rule": "sql-concat"},
+  {"file": "app/reports.py", "line": 25, "rule": "sql-concat"},
+  {"file": "app/reports.py", "line": 31, "rule": "empty-catch"},
+  {"file": "app/reports.py", "line": 33, "rule": "todo-comment"},
+  {"file": "app/reports.py", "line": 38, "rule": "debugger-statement"}
+]}

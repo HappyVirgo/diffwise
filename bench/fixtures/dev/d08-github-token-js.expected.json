@@ -1,0 +1,10 @@
+{
+  "description": "Synthetic: GitHub personal access token in an HTTP client header.",
+  "findings": [
+    {
+      "file": "src/integrations/github.js",
+      "line": 3,
+      "rule": "hardcoded-secret"
+    }
+  ]
+}
